@@ -1,0 +1,20 @@
+﻿https://www.youtube.com/watch?v=mz6dccUpRuQ&list=PLqCbg_KAOnCdRm3FI1EvndnsNNWz_1A5c&index=79
+
+1.
+2.
+3.
+4.Use Data Table Libary .for data table need tabe section divided by Thead & Tbody
+5.Range Wise Searacing
+6.Excel Export,Copy, Print, Csv, PDF (https://datatables.net/extensions/buttons/examples/html5/filename.html)
+7.Add Cart  https://www.youtube.com/watch?v=3-39aHtFS4M&list=PLqCbg_KAOnCdRm3FI1EvndnsNNWz_1A5c&index=46
+8.Add Session https://www.youtube.com/watch?v=3-39aHtFS4M&list=PLqCbg_KAOnCdRm3FI1EvndnsNNWz_1A5c&index=46
+
+9.First Data store in Session and then Add to cart.If One More Cart are add posible.We can Remove from Cart.It Show All Cart List And Here
+we can see All product which are Carted and also see Total amount.Here Possible Process to Check out.
+10. Use Partial view: Asp_Controller Thakbe na .Sudu Asp_action thakve.Asp_route-id thakve,@Model theke data asbe.
+
+11.Use Date timepikker usign Jquery.
+
+12.Jquery Validation : https://code.tutsplus.com/tutorials/easy-form-validation-with-jquery--cms-33096
+13.Using Error color:https://isabelcastillo.com/error-info-messages-css
+14.For Identity Role Set  Change in start Up :  services.AddIdentity<IdentityUser,IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)

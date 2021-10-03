@@ -1,0 +1,93 @@
+﻿@model IEnumerable<E_Commerce_System.Models.SpacialTag>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<br />
+<br />
+
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info "> Special Tag List </h2>
+    </div>
+
+    <div class="col-6 ">
+        <h2 class="text-right">
+            <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i> &nbsp; New Special Tag</a>
+        </h2>
+
+
+    </div>
+
+</div>
+<br />
+<table class="table table-striped border" id="myTable">
+    <thead>
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(c => c.spacialTag)
+            </th>
+            <th></th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.spacialTag</td>
+                <td>
+                    @*<partial name="_SpButtonPartial" model="item.Id" />*@
+                    <partial name="_ButtonPartial" model="item.Id" />
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>
+
+
+@section scripts{
+
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+              
+
+            });
+        });
+
+
+
+       $(function () {
+            var Save = '@TempData["Save"]'
+            if (Save != null) {
+                alertify.success(Save);
+            }
+
+            var edit = '@TempData["edit"]'
+            if (edit != null) {
+                alertify.success(edit);
+            }
+
+            var del = '@TempData["Delete"]'
+            if (del != null) {
+                alertify.success(del);
+            }
+        })
+
+
+    </script>
+}

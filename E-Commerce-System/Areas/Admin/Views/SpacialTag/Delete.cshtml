@@ -1,0 +1,62 @@
+﻿@model E_Commerce_System.Models.SpacialTag
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-info">Delete Special Tag </h2>
+<form asp-action="Delete" method="post">
+    <div class="p-4 rounded border">
+        <input type="hidden" asp-for="Id" />
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="spacialTag"></label>
+
+            </div>
+
+            <div class="col-5">
+                <input asp-for="spacialTag" readonly="readonly" class="form-control" />
+
+            </div>
+            <span asp-validation-for="spacialTag" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-danger" value="Delete" />
+            <a asp-action="Index" class="btn btn-success"> Back To List </a>
+        </div>
+
+    </div>
+
+</form>
+
+@section Scripts{
+
+
+    @*<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+
+
+            var Save = '@TempData["Save"]'
+
+            if (Save != null) {
+
+                alertify.success(Save);
+            }
+
+        })
+
+
+    </script>*@
+
+
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+}

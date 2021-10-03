@@ -1,0 +1,140 @@
+﻿@model IEnumerable<E_Commerce_System.Models.Products>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css" />*@
+
+<br />
+<br />
+
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info "> Products List </h2>
+    </div>
+
+    <div class="col-6 ">
+        <h2 class="text-right">
+            <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i> &nbsp; New Product </a>
+        </h2>
+
+
+    </div>
+
+</div>
+
+<form method="post">
+    <div class="row">
+        <div class="col-3">
+            <input type="number" class="form-control" name="lowamount" placeholder="Lowamount" />
+        </div>
+        <div class="col-3">
+            <input type="number" class="form-control" name="largeamount" placeholder="Largeamount" />
+        </div>
+        <div class="col-3">
+            <input type="submit" value="Search" class="btn btn-success" />
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
+
+<br />
+<table class="table table-striped border" id="myTable">
+    <thead>
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(c => c.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(c => c.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(c => c.ProductColor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(c => c.IsAvailable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(c => c.ProductTypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(c => c.SpecialTagId)
+            </th>
+            <th></th>
+            <th></th>
+
+        </tr>
+
+    </thead>
+
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.ProductColor</td>
+                <td>@item.IsAvailable</td>
+                <td>@item.productType.ProductType</td>
+                <td>@item.SpacialTag.spacialTag</td>
+
+                <td>
+                    @*<partial name="_ProductButtonPartial" model="item.Id" />*@
+                    <partial name="_ButtonPartial" model="item.Id" />
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>
+
+
+@*Use For Alertify Massege*@
+
+@section scripts{
+
+    @*<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>*@
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+
+        });
+    });
+  
+
+        $(function () {
+            var Save = '@TempData["Save"]'
+            if (Save != null) {
+                alertify.success(Save);
+            }
+
+            var edit = '@TempData["edit"]'
+            if (edit != null) {
+                alertify.success(edit);
+            }
+
+            var del = '@TempData["Delete"]'
+            if (del != null) {
+                alertify.success(del);
+            }
+        })
+
+
+    </script>
+}

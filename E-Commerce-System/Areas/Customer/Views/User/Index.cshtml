@@ -1,0 +1,103 @@
+﻿@model IEnumerable<E_Commerce_System.Models.ApplicationUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<br />
+<br />
+
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info "> User List  </h2>
+    </div>
+
+    <div class="col-6 ">
+        <h2 class="text-right">
+            <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i> &nbsp; New  User </a>
+        </h2>
+
+
+    </div>
+
+</div>
+<br />
+<table class="table table-striped border" id="myTable">
+    <thead>
+        <tr class="table-info">
+            <th>
+                Name
+            </th>
+            <th>User Name</th>
+            <th>Status</th>
+            <th></th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.FirstName @item.LastName</td>
+            <td>@item.UserName</td>
+
+            @if (item.LockoutEnd > DateTime.Now && item.LockoutEnd != null)
+            {
+                <td>Inactive</td>
+                <td></td>
+                <td>
+                    <div class="btn-group">
+                        @*<a asp-action="Active" class="btn btn-primary" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>*@
+
+                        <a asp-action="Active" class="btn btn-success" asp-route-id="@item.Id">Active</a>
+                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></a>
+                    </div>
+                </td>
+            }
+            else
+            {
+                <td>Active</td>
+
+                <td>
+                    <partial name="_UserPartial" model="@item.Id" />
+                </td>
+            }
+
+
+        </tr>
+        }
+    </tbody>
+
+
+</table>
+
+@section scripts{
+
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <script type="text/javascript">
+
+
+
+        $(function () {
+            var Save = '@TempData["Save"]'
+            if (Save != null) {
+                alertify.success(Save);
+            }
+
+            var edit = '@TempData["edit"]'
+            if (edit != null) {
+                alertify.success(edit);
+            }
+
+            var del = '@TempData["Delete"]'
+            if (del != null) {
+                alertify.success(del);
+            }
+        })
+
+
+    </script>
+}
